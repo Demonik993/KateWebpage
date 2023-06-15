@@ -1,0 +1,1 @@
+{"version":3,"sources":["app.js"],"names":["document","onload","alert"],"mappings":"AAAAA,QAAQ,CAACC,MAAM,GAAGC,KAAK,2BAA2B,CAAC","file":"app.c328ef1a.js","sourceRoot":"..","sourcesContent":["document.onload = alert(`Let's learn by practice!`)"]}

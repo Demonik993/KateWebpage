@@ -1,0 +1,1 @@
+document.onload = alert(`Let's learn by practice!`)
