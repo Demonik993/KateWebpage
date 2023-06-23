@@ -1,5 +1,7 @@
+@media screen and (min-width: 300px) {
 body {
     display:grid;
+    width: 90vw;
 }
 header {
     display: flex;
@@ -73,4 +75,12 @@ h2 {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-transform: uppercase;
     margin-top: 100px;
+}
+#text-box {
+    width: 200px;
+    height: 150px;
+    background-color: white;
+    display: none;
+    position: absolute;
+}
 }
