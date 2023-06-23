@@ -1,0 +1,1 @@
+{"id":"A2T1","dependencies":[{"name":"D:\\KateWebpage\\package.json","includedInParent":true,"mtime":1686846826135}],"generated":{"js":"document.onload=alert(\"Let's learn by practice!\");"},"sourceMaps":null,"error":null,"hash":"cf7c7f9d1c1ff703569bd6c5d635047c","cacheData":{"env":{},"imports":{},"exports":{},"wildcards":[],"sideEffects":true}}
