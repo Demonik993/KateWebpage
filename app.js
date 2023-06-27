@@ -1,25 +1,26 @@
-document.onload = alert(`Kasia, zaczynamy pracować nad Twoją stroną! Narazie wersja wyłacznie na laptopa`);
+// document.onload = alert(`Kasia, zaczynamy pracować nad Twoją stroną! Narazie wersja wyłacznie na ekrany pow 600px. Musimy zastanowić się nad kolorystyką.`);
 
 
 const logo = document.querySelector('#logo');
+const boxLogo = document.querySelector('#text-box')
+const webhead = document.querySelector('#name');
+const boxName = document.querySelector('#text-name');
+const navPan = document.querySelector('#nav-pan');
+const boxNav = document.querySelector('#text-nav');
 
-logo.addEventListener('click', ()=>{
+function textBox(element, box){
+    element.addEventListener('mouseover', (e)=>{
+        const x = e.clientX;
+        const y = e.clientY;
+        box.style.display = 'flex';
+        box.style.top = `${y}px`;
+        box.style.left = `${x}px`;
+        element.addEventListener('mouseout', ()=>{
+            box.style.display = "none"
+        });
+    });
+};
+ textBox(logo,boxLogo);
+ textBox(webhead,boxName);
+ textBox(navPan,boxNav);
 
-
-    const textBox = document.querySelector('#text-box');
-    const message = document.createElement('p');
-    if(textBox.id !== "active"){
-    const x = document.scrollX
-    const y = document.scrollY
-    console.log(y)
-    console.log(x)
-    message.textContent = 'musimy zrobić Ci jakieś logo, potrzebuję wiedzieć co Cię interesuje';
-    textBox.appendChild(message);
-    textBox.style.display = 'block';
-    textBox.style.top = `100px`
-    textBox.style.left = `100px`
-    textBox.id = "active"
-    }
-    
-
-})
