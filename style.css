@@ -1,7 +1,8 @@
 @media screen and (min-width: 300px) {
 body {
     display:grid;
-    width: 90vw;
+    overflow-x: hidden;
+    width: 100%;
     font-family: 'Anton', sans-serif;
     font-family: 'Bacasime Antique', serif;
     font-family: 'Open Sans', sans-serif;
@@ -9,47 +10,73 @@ body {
 }
 header {
     display: flex;
-    float: left;
-    width: 100vw;
+    float: right;
+    width: 100%;
     height: fit-content;
     margin: 2px;
-    
+    position: sticky;
+    top: 10px;
+    padding-left: 10px;
+    padding-right: 20px;
 }
 header div {
     width: 100%;
     background-color: rgba(71, 25, 11, 0.474);
+    padding-left: 10px;
+    padding-right: 20px;
+}
+#logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    width:fit-content;
+    background-color: transparent;
 }
 div h1{
-    width: 80vw;
     text-align: right;
-    margin: 10px 100px 0 0;
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 100px; 
 }
 div svg {
     position: relative;
     left: 10px;
     height: 100%;
 }
-div nav ul li {
-    list-style: none;
-
-}
 div nav ul {
     display: flex;
     float: right;
-    margin-right: 100px;
+    margin-right: 10px;
     gap: 20px;
     height: fit-content;
     flex-wrap: wrap;
     row-gap: 2px;
+    padding-left: 10px;
+    padding-right: 100px;
 }
 
+div nav ul li {
+    list-style: none;
+    letter-spacing: 2px;
+}
+#nav-pan ul li a {
+    text-decoration: none;
+    color: black;
+}
+main{
+    padding-left: 10px;
+    padding-right: 20px;
+}
 .search {
     display: flex;
     height: fit-content;
     margin: 2px;
-    width: 99%;
+    width: 100%;
     background-color: rgba(0,0,0,0.7);
     color: whitesmoke;
+    padding-left: 10px;
+    padding-right: 20px;
 }
 .search div {
     display: block;
@@ -78,7 +105,7 @@ input:focus {
 h2 {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-transform: uppercase;
-    margin-top: 100px;
+    margin-top: 80px;
     letter-spacing: 10px;
 }
 #text-box {
@@ -100,23 +127,27 @@ h2 {
 #text-nav {
     border: 3px black solid;
     width: 200px;
-    height: 50px;
+    height: 100px;
     background-color: white;
     display: none;
     position: absolute;   
 }
-#panels {
+#panels, #course-panels {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    gap: 20px;
     grid-auto-rows: minmax(100px, auto);
 }
-#main-panel h2{
+#main-panel, #course-panel {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+#main-panel h2, #course-panel h2{
     width: 100%;
     text-align: center;
-    margin: 2em;
+    margin: 1.5em;
 }
-#panels div{
+#panels div, #course-panels div{
     display: flex;
     height: 200px;
     background-color: rgba(0,0,0,0.3);
@@ -125,7 +156,7 @@ h2 {
     margin: 0;
 }
 
-#panels div p {
+#panels div p, #course-panel div p{
     font-family: 'Anton', sans-serif;
     font-family: 'Bacasime Antique', serif;
     font-family: 'Open Sans', sans-serif;
@@ -137,11 +168,21 @@ h2 {
     height: 1.6em;
     color: rgba(255, 255,255, 0.7);
     background-color: rgba(0,0,0,0.8);
-    margin: 0;
+    margin: 0
 }
 
-#panels div p:hover{
+#panels div p:hover, #course-panel div p:hover{
     text-decoration: underline;
     cursor: pointer;
+}
+#course-panel {
+    background-color: rgba(61, 61, 61, 0.259);
+}
+#course-panel #course-panels div {
+    background-color: rgb(38, 158, 25);
+}
+#course-panel #course-panels div p{
+    background-color: rgb(15, 151, 102);
+    color: black;
 }
 }
