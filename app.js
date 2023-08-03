@@ -2,7 +2,7 @@
 
 
 const logo = document.querySelector('#logo');
-const boxLogo = document.querySelector('#text-box')
+const boxLogo = document.querySelector('#text-box');
 const webhead = document.querySelector('#name');
 const boxName = document.querySelector('#text-name');
 const navPan = document.querySelector('#nav-pan');
@@ -16,10 +16,10 @@ function textBox(element, box){
         box.style.top = `${y}px`;
         box.style.left = `${x}px`;
         element.addEventListener('mouseout', ()=>{
-            box.style.display = "none"
+            box.style.display = "none";
         });
     });
-};
+}
  textBox(logo,boxLogo);
  textBox(webhead,boxName);
  textBox(navPan,boxNav);
