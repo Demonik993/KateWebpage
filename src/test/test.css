@@ -30,6 +30,7 @@ body{
         margin-right: 1em;
     }
     #test p {
+        display: flex;
         justify-content: flex-start;
     }
     

@@ -7,8 +7,15 @@ const test = [
     ['Question4','answer 1', 'answer 2', 'answer 3', "answer 4"],
     ['Question5','answer 1', 'answer 2', 'answer 3', "answer 4"],
     ['Question6','answer 1', 'answer 2', 'answer 3', "answer 4"]
-]
-function loadtest () {
+];
+
+function checkanswers(results){
+    
+console.log(results)
+
+}
+
+function loadtest (userData) {
     //welcome user
     document.querySelector('h1').textContent = `Hi, ${userData.name}`;
     //clear page
@@ -47,6 +54,24 @@ function loadtest () {
     sendTest.textContent = 'I have done it!'
     buttonPara.appendChild(sendTest)
     form.appendChild(buttonPara);
+
+    form.onsubmit = async (e) =>{
+        e.preventDefault();
+        const allAnswers = document.querySelectorAll("input");
+        const allLabels = document.querySelectorAll("label");
+        const studRes = []
+        allAnswers.forEach(ans =>{
+            if(ans.checked===true){
+                allLabels.forEach(lab=>{
+                   if(lab.htmlFor===ans.id){
+                    studRes.push([ans.name, lab.textContent])
+                   }
+                })
+            }
+        });
+        
+        checkanswers(studRes);
+    }
 }
 
 studentData.onsubmit = async (e) => {
@@ -60,6 +85,7 @@ studentData.onsubmit = async (e) => {
     userData.surname = surname;
     userData.age = age;
     userData.email = email;
-    loadtest()
+    loadtest(userData)
 };
 
+console.log(userData);
