@@ -13,20 +13,24 @@ body{
         text-transform: uppercase;
         text-align: center;
     }
-    #student_data{
+    form {
         display: block;
         background-color: antiquewhite;
         position: relative;
         padding: 1em 2em 1em 2em;
         width: fit-content;
+        min-width: 30%;
     }
-    #student_data p {
+    form p {
         display: flex;
         justify-content: flex-end;
         gap: 10px;
     }
-    #student_data p button {
+    form p button {
         margin-right: 1em;
+    }
+    #test p {
+        justify-content: flex-start;
     }
     
 }
