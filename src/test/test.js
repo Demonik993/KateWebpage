@@ -1,42 +1,112 @@
-let studentData = document.querySelector("#student_data");
+const studentData = document.querySelector("#student_data");
+const title = document.querySelector('h1');
+const div = document.querySelector('div');
+
+
 let userData = new FormData (studentData);
+
 const test = [
-    ['Question1','answer 1', 'answer 2', 'answer 3', "answer 4"],
-    ['Question2','answer 1', 'answer 2', 'answer 3', "answer 4"],
-    ['Question3','answer 1', 'answer 2', 'answer 3', "answer 4"],
-    ['Question4','answer 1', 'answer 2', 'answer 3', "answer 4"],
-    ['Question5','answer 1', 'answer 2', 'answer 3', "answer 4"],
-    ['Question6','answer 1', 'answer 2', 'answer 3', "answer 4"]
+    ['Question1','How to say...?','answer 1', 'answer 2', 'answer 3', "answer 4"],
+    ['Question2','How to say...?','answer 1', 'answer 2', 'answer 3', "answer 4"],
+    ['Question3','How to say...?','answer 1', 'answer 2', 'answer 3', "answer 4"],
+    ['Question4','How to say...?','answer 1', 'answer 2', 'answer 3', "answer 4"],
+    ['Question5','How to say...?','answer 1', 'answer 2', 'answer 3', "answer 4"],
+    ['Question6','How to say...?','answer 1', 'answer 2', 'answer 3', "answer 4"]
 ];
 
-function checkanswers(results){
+// check answer save and send it as an email.
+function checkanswers(userData, resFormData, answers){
+    let result = 0;
+    //console.log(userData);
+    //console.log(resFormData);
+    //console.log(answers)
+    // new Objectr with answers
+    const correctAnswers = new Object(answers);
+    // clear all HTML file
+    div.innerHTML = ''
+    // lets create a page:
+    title.textContent = `${userData.name}, congratulations you complete your test!`
+    const paraRes = document.createElement('h2');
+    paraRes.textContent = 'Below you can find your results:';
+    div.style.display = "block";
+    div.appendChild(paraRes)
+    test.forEach(val=> {
+        const article = document.createElement('article');
+        article.id = val[0];
+        div.appendChild(article);
+        const head = document.createElement('h3');
+        head.textContent = `${val[0]}: ${val[1]}`;
+        article.appendChild(head);
+    })
+
+    // compare all data
     
-console.log(results)
+    for(let cordata of Object.entries(correctAnswers)){
+        for(let data of Object.entries(resFormData)){
+            if(data[0]===cordata[0]){
+              if(data[1] === cordata[1]){
+                let para = document.createElement('p');
+                let correctAnswer = document.createElement('p');
+                let wrongAnswer = document.createElement('p');
+                para.textContent = "Good job you are right!";
+                para.className = "correctAnswer";
+                correctAnswer.textContent = `${data[1]}`
+                document.getElementById(`${data[0]}`).appendChild([para]);
+                document.getElementById(`${data[0]}`).appendChild([correctAnswer]); 
+                console.log(para) 
+               } else {
+                let para = document.createElement('p');
+                let correctAnswer = document.createElement('p');
+                let wrongAnswer = document.createElement('p');
+                para.textContent = "Unfortunatly, you are wrong!";
+                para.className = "wrongAnswer";
+                wrongAnswer.textContent = `Your answer: ${data[1]}`;
+                correctAnswer.textContent = `${cordata[1]}`
+                document.getElementById(`${data[0]}`).appendChild([para]);
+                document.getElementById(`${data[0]}`).appendChild([wrongAnswer]);
+                document.getElementById(`${data[0]}`).appendChild([correctAnswer]);
+                console.log()
+               }
+            }
+        };
+        
+       // console.log(`${data[0]}`, //data[0], key 
+         //   `${data[1]}`) // data[0] - value
+        
+    }
+
+
 
 }
 
 function loadtest (userData) {
-    //welcome user
-    document.querySelector('h1').textContent = `Hi, ${userData.name}`;
+      //welcome user
+    title.textContent = `Hi, ${userData.name}`;
     //clear page
-    const div = document.querySelector('div');
+   
     div.innerHTML = '';
     //create form with questions
     const form = document.createElement("form");
     form.id = "test";
     div.appendChild(form);
     test.forEach(question=>{
-        let questions = document.createElement("fieldset");
-        let legend = document.createElement("legend");
+        const questions = document.createElement("fieldset");
+        const legend = document.createElement("legend");
         questions.id = question[0].toLowerCase();
         legend.textContent = question[0];
+        form.appendChild(questions)
+        //adding questions
+        const askQuestion = document.createElement("h3");
+        askQuestion.textContent = question[1];
+        questions.appendChild(askQuestion)
         //adding answers
-        for(i=1;i<question.length;i++){
+        for(i=2;i<question.length;i++){
             let para = document.createElement('p');
             let label = document.createElement('label')
             label.setAttribute("for", question[0]+i);
             label.textContent = question[i];
             let radio = document.createElement("input");
+            radio.setAttribute('required', 'true');
             radio.setAttribute('type', 'radio');
             radio.id = question[0]+i;
             radio.name = question[0]
@@ -45,7 +115,7 @@ function loadtest (userData) {
             questions.appendChild(para);
         } 
         questions.appendChild(legend)
-        form.appendChild(questions)       
+        //form.appendChild(questions)       
     })
     //add submit button with function
     const buttonPara = document.createElement('p')
@@ -56,6 +126,8 @@ function loadtest (userData) {
     form.appendChild(buttonPara);
 
     form.onsubmit = async (e) =>{
+        const formId = document.querySelector('#test')
+        const testResults = new FormData(formId);
         e.preventDefault();
         const allAnswers = document.querySelectorAll("input");
         const allLabels = document.querySelectorAll("label");
@@ -64,13 +136,23 @@ function loadtest (userData) {
             if(ans.checked===true){
                 allLabels.forEach(lab=>{
                    if(lab.htmlFor===ans.id){
-                    studRes.push([ans.name, lab.textContent])
+                    let qName = ans.name
+                    testResults[`${qName}`] = lab.textContent;
                    }
                 })
             }
         });
-        
-        checkanswers(studRes);
+        // fetch answers from json
+        fetch('../dataFiles/test-answer.json')
+            .then(response => {
+                if(!response.ok){
+                    throw new Error(`HTTP error: ${response.status}`);
+                }
+                return response.json();
+            })
+            //send it to next function 
+            .then(json => checkanswers(userData, testResults,json))
+           // .catch(err => console.error(`Fetch problem: ${err.message}`) );      
     }
 }
 
@@ -87,5 +169,3 @@ studentData.onsubmit = async (e) => {
     userData.email = email;
     loadtest(userData)
 };
-
-console.log(userData);
