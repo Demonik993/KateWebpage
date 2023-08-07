@@ -17,10 +17,7 @@ const test = [
 // check answer save and send it as an email.
 function checkanswers(userData, resFormData, answers){
     let result = 0;
-    //console.log(userData);
-    //console.log(resFormData);
-    //console.log(answers)
-    // new Objectr with answers
+    // new Object with answers
     const correctAnswers = new Object(answers);
     // clear all HTML file
     div.innerHTML = ''
@@ -47,34 +44,34 @@ function checkanswers(userData, resFormData, answers){
               if(data[1] === cordata[1]){
                 let para = document.createElement('p');
                 let correctAnswer = document.createElement('p');
-                let wrongAnswer = document.createElement('p');
+                let elId = data[0];
+                result++;
                 para.textContent = "Good job you are right!";
                 para.className = "correctAnswer";
                 correctAnswer.textContent = `${data[1]}`
-                document.getElementById(`${data[0]}`).appendChild([para]);
-                document.getElementById(`${data[0]}`).appendChild([correctAnswer]); 
-                console.log(para) 
+                document.getElementById(`${elId}`).appendChild(para);
+                document.getElementById(`${elId}`).appendChild(correctAnswer); 
                } else {
                 let para = document.createElement('p');
                 let correctAnswer = document.createElement('p');
                 let wrongAnswer = document.createElement('p');
+                let elId = data[0];
                 para.textContent = "Unfortunatly, you are wrong!";
                 para.className = "wrongAnswer";
                 wrongAnswer.textContent = `Your answer: ${data[1]}`;
-                correctAnswer.textContent = `${cordata[1]}`
-                document.getElementById(`${data[0]}`).appendChild([para]);
-                document.getElementById(`${data[0]}`).appendChild([wrongAnswer]);
-                document.getElementById(`${data[0]}`).appendChild([correctAnswer]);
-                console.log()
+                correctAnswer.textContent = `Correct answer: ${cordata[1]}`
+                document.getElementById(`${elId}`).appendChild(para);
+                document.getElementById(`${elId}`).appendChild(wrongAnswer);
+                document.getElementById(`${elId}`).appendChild(correctAnswer);
+              
                }
             }
-        };
-        
-       // console.log(`${data[0]}`, //data[0], key 
-         //   `${data[1]}`) // data[0] - value
-        
+        }    
     }
-
+    const sumarry = document.createElement('h2');
+    const sum = Math.round(Math.floor(result/test.length));
+    sumarry.textContent = `You made ${result} (${sum/100}%) correct answers!`;
+    div.appendChild(sumarry)
 
 
 }
