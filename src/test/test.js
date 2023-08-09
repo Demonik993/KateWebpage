@@ -166,7 +166,7 @@ function loadtest (userData) {
             }
         });
         // fetch answers from json
-        fetch('test-answer.json')
+        fetch('/src/test-answer.json')
             .then(response => {
                 if(!response.ok){
                     throw new Error(`HTTP error: ${response.status}`);
