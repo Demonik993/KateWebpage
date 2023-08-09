@@ -56,11 +56,10 @@ function checkanswers(userData, resFormData, answers){
                 let correctAnswer = document.createElement('p');
                 let wrongAnswer = document.createElement('p');
                 let elId = data[0];
-                answersToSend.push([data[0],data[1],"wrong answer"]);
+                answersToSend.push(`On question: ${data[0]}, ${userData.name} gave wrong answer: ${data[1]}. Correct answer: ${cordata[1]}`);
                 para.textContent = "Unfortunatly, you are wrong!";
                 para.className = "wrongAnswer";
                 wrongAnswer.textContent = `Your answer: ${data[1]}`;
-                answersToSend.push(`On question: ${data[0]}, ${userData.name} gave wrong answer: ${data[1]}. Correct answer: ${cordata[1]}`);
                 document.getElementById(`${elId}`).appendChild(para);
                 document.getElementById(`${elId}`).appendChild(wrongAnswer);
                 document.getElementById(`${elId}`).appendChild(correctAnswer);
@@ -78,13 +77,21 @@ function checkanswers(userData, resFormData, answers){
     else {sumarry.textContent = `I know you can do this better. You made ${result} (${sum*100}%) correct answers.`}
     
     div.appendChild(sumarry)
-    // sending e-mail
+ 
     
     //create obj with user answers
     let userResults = {...userData};
     userResults.answers = answersToSend;
     userResults.summary =  `${userData.name} gave ${result} correct answers and it gives ${sum*100}%`;
     console.log(userResults);
+
+    // sending e-mail
+    emailjs.send('service_dckp35n', 'template_4ypd9ca', userResults)
+    .then(function(response) {
+       console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+       console.log('FAILED...', error);
+    });
 
 }
 
