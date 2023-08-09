@@ -92,7 +92,12 @@ function checkanswers(userData, resFormData, answers){
     }, function(error) {
        console.log('FAILED...', error);
     });
-
+    // adding last button to exit test and close tab
+    
+    const closingButton = document.createElement('button');
+    closingButton.textContent = "I've got it. Close the test";
+    closingButton.onclick = ()=>{ window.close()};
+    div.appendChild(closingButton);
 }
 
 function loadtest (userData) {
@@ -161,7 +166,7 @@ function loadtest (userData) {
             }
         });
         // fetch answers from json
-        fetch('../dataFiles/test-answer.json')
+        fetch('test-answer.json')
             .then(response => {
                 if(!response.ok){
                     throw new Error(`HTTP error: ${response.status}`);
