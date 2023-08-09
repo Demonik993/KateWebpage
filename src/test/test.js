@@ -63,16 +63,21 @@ function checkanswers(userData, resFormData, answers){
                 document.getElementById(`${elId}`).appendChild(para);
                 document.getElementById(`${elId}`).appendChild(wrongAnswer);
                 document.getElementById(`${elId}`).appendChild(correctAnswer);
-              
                }
             }
         }    
-    }
+    };
+    // And add some summary for user 
     const sumarry = document.createElement('h2');
-    const sum = Math.round(Math.floor(result/test.length));
-    sumarry.textContent = `You made ${result} (${sum/100}%) correct answers!`;
+    const sum = Math.round((result/test.length)*100)/100;
+    if(sum===1){sumarry.textContent = `Awesome, you passed this test perfectly!`}
+    if(sum>0.9){sumarry.textContent = `Wow, you made ${result} (${sum*100}%) correct answers!`}
+    if(sum>0.7){sumarry.textContent = `Good job, you made ${result} (${sum*100}%) correct answers!`}
+    if(sum>=0.4){sumarry.textContent = `You made ${result} (${sum*100}%) correct answers. Next time will be better`}
+    else {sumarry.textContent = `I know you can do this better. You made ${result} (${sum*100}%) correct answers.`}
+    
     div.appendChild(sumarry)
-
+    
 
 }
 
