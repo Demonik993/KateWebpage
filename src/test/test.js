@@ -166,7 +166,7 @@ function loadtest (userData) {
             }
         });
         // fetch answers from json
-        fetch('./test-answer.json')
+        fetch('https://github.com/Demonik993/KateWebpage/blob/master/src/test/test-answer.json')
             .then(response => {
                 if(!response.ok){
                     throw new Error(`HTTP error: ${response.status}`);
