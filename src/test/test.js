@@ -1,10 +1,7 @@
 const studentData = document.querySelector("#student_data");
 const title = document.querySelector('h1');
 const div = document.querySelector('div');
-
-
 let userData = new FormData (studentData);
-
 const test = [
     ['Question1','How to say...?','answer 1', 'answer 2', 'answer 3', "answer 4"],
     ['Question2','How to say...?','answer 1', 'answer 2', 'answer 3', "answer 4"],
@@ -16,6 +13,8 @@ const test = [
 
 // check answer save and send it as an email.
 function checkanswers(userData, resFormData, answers){
+
+    const answersToSend = [];
     let result = 0;
     // new Object with answers
     const correctAnswers = new Object(answers);
@@ -45,6 +44,7 @@ function checkanswers(userData, resFormData, answers){
                 let para = document.createElement('p');
                 let correctAnswer = document.createElement('p');
                 let elId = data[0];
+                answersToSend.push(`On question: ${data[0]}, ${userData.name} gave corret answer. ${data[1]}`);
                 result++;
                 para.textContent = "Good job you are right!";
                 para.className = "correctAnswer";
@@ -56,10 +56,11 @@ function checkanswers(userData, resFormData, answers){
                 let correctAnswer = document.createElement('p');
                 let wrongAnswer = document.createElement('p');
                 let elId = data[0];
+                answersToSend.push([data[0],data[1],"wrong answer"]);
                 para.textContent = "Unfortunatly, you are wrong!";
                 para.className = "wrongAnswer";
                 wrongAnswer.textContent = `Your answer: ${data[1]}`;
-                correctAnswer.textContent = `Correct answer: ${cordata[1]}`
+                answersToSend.push(`On question: ${data[0]}, ${userData.name} gave wrong answer: ${data[1]}. Correct answer: ${cordata[1]}`);
                 document.getElementById(`${elId}`).appendChild(para);
                 document.getElementById(`${elId}`).appendChild(wrongAnswer);
                 document.getElementById(`${elId}`).appendChild(correctAnswer);
@@ -77,7 +78,13 @@ function checkanswers(userData, resFormData, answers){
     else {sumarry.textContent = `I know you can do this better. You made ${result} (${sum*100}%) correct answers.`}
     
     div.appendChild(sumarry)
+    // sending e-mail
     
+    //create obj with user answers
+    let userResults = {...userData};
+    userResults.answers = answersToSend;
+    userResults.summary =  `${userData.name} gave ${result} correct answers and it gives ${sum*100}%`;
+    console.log(userResults);
 
 }
 
@@ -128,6 +135,8 @@ function loadtest (userData) {
     form.appendChild(buttonPara);
 
     form.onsubmit = async (e) =>{
+        e.preventDefault();
+
         const formId = document.querySelector('#test')
         const testResults = new FormData(formId);
         e.preventDefault();
