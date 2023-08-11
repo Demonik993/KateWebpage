@@ -35,3 +35,34 @@ body{
     }
     
 }
+@media (max-width: 599px) {
+    body div{
+        display: block;
+        justify-content: center;
+    }
+    h1{
+        color: rgba(0, 0, 0, 0.785);
+        text-transform: uppercase;
+        text-align: center;
+    }
+    form {
+        background-color: antiquewhite;
+        padding: 1em 2em 1em 2em;
+        min-width: 30%;
+    }
+    form p {
+        display: block;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+    form p button {
+        margin-right: 1em;
+        box-sizing: border-box;
+        width: 90%;
+    }
+    #test p {
+        display: flex;
+        justify-content: flex-start;
+    }
+    
+}
