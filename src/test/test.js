@@ -2,7 +2,7 @@ const studentData = document.querySelector("#student_data");
 const title = document.querySelector('h1');
 const div = document.querySelector('div');
 let userData = new FormData (studentData);
-const answers = require("../dataFiles/test-answer.json")
+//const answers = require("../dataFiles/test-answer.json")
 const test = [
     ['Question1','How to say...?','answer 1', 'answer 2', 'answer 3', "answer 4"],
     ['Question2','How to say...?','answer 1', 'answer 2', 'answer 3', "answer 4"],
@@ -11,6 +11,8 @@ const test = [
     ['Question5','How to say...?','answer 1', 'answer 2', 'answer 3', "answer 4"],
     ['Question6','How to say...?','answer 1', 'answer 2', 'answer 3', "answer 4"]
 ];
+
+
 
 // check answer save and send it as an email.
 function checkanswers(userData, resFormData, answers){
@@ -170,15 +172,13 @@ function loadtest (userData) {
         fetch("../dataFiles/test-answer.json")
             .then(response => {
                 if(!response.ok){
-                    const  err = new Error("No answers file accessable!")
+                    const err = new Error("No answers file accessable!")
                     err.status = 404;
                     return err;
-                }
-                return response.json();
+                } else {return response.json();}
             })
             //send it to next function 
-            .then(json => checkanswers(userData, testResults,json))
-           // .catch(err => console.error(`Fetch problem: ${err.message}`) );      
+            .then(json => checkanswers(userData, testResults,json))    
     }
 }
 

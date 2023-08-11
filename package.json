@@ -7,7 +7,7 @@
     "prettier": "^2.8.8"
   },
   "scripts": {
-    "build": "parcel build index.html"
+    "build": ""
   },
   "dependencies": {
     "@emailjs/browser": "^3.11.0"
