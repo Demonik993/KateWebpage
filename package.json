@@ -7,7 +7,8 @@
     "prettier": "^2.8.8"
   },
   "scripts": {
-    "build": "parcel build index.html"
+    "start": "./node_modules/.bin/netlify-lambda serve src",
+    "build":"./node_modules/.bin/netlify-lambda build src"
   },
   "dependencies": {
     "@emailjs/browser": "^3.11.0"
