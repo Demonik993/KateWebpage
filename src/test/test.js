@@ -171,7 +171,7 @@ function loadtest (userData) {
                 if(!response.ok){
                     const  err = new Error("No answers file accessable!")
                     err.status = 404;
-                    return next(err);
+                    return err;
                 }
                 return response.json();
             })
