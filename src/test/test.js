@@ -2,6 +2,7 @@ const studentData = document.querySelector("#student_data");
 const title = document.querySelector('h1');
 const div = document.querySelector('div');
 let userData = new FormData (studentData);
+const answers = require("../dataFiles/test-answer.json")
 const test = [
     ['Question1','How to say...?','answer 1', 'answer 2', 'answer 3', "answer 4"],
     ['Question2','How to say...?','answer 1', 'answer 2', 'answer 3', "answer 4"],
@@ -166,7 +167,7 @@ function loadtest (userData) {
             }
         });
         // fetch answers from json
-        fetch("../dist/dataFiles/test-answer.json")
+        fetch("../dataFiles/test-answer.json")
             .then(response => {
                 if(!response.ok){
                     const  err = new Error("No answers file accessable!")

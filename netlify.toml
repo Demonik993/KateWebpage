@@ -1,3 +1,3 @@
 [build]
     directory = "functions"
-    included_files = ["../dist/dataFiles/test-answer.json"]
+    included_files = ["all/test-answer.json"]
