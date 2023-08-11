@@ -169,7 +169,9 @@ function loadtest (userData) {
         fetch('../dataFiles/test-answer.json')
             .then(response => {
                 if(!response.ok){
-                    throw new Error(`HTTP error: ${response.status}`);
+                    const  err = new Error("No answers file accessable!")
+                    err.status = 404;
+                    return next(err);
                 }
                 return response.json();
             })
