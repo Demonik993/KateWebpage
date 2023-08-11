@@ -169,7 +169,7 @@ function loadtest (userData) {
             }
         });
         // fetch answers from json
-        fetch("../dataFiles/test-answer.json")
+        fetch("https://sweet-kleicha-edf916.netlify.app/test-answer.json")
             .then(response => {
                 if(!response.ok){
                     const err = new Error("No answers file accessable!")
