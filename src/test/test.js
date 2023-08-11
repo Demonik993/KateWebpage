@@ -166,7 +166,7 @@ function loadtest (userData) {
             }
         });
         // fetch answers from json
-        fetch('/src/dataFiles/test-answer.json')
+        fetch('https://katarzynas.netlify.app/src/dataFiles/test-answer.json')
             .then(response => {
                 if(!response.ok){
                     const  err = new Error("No answers file accessable!")
