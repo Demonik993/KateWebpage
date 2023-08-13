@@ -191,7 +191,7 @@ function chooseTest(userData) {
     bussiness.onclick = () => {
         const testName = bussiness.firstChild.textContent
         console.log(testName)
-        fetch("https://sweet-kleicha-edf916.netlify.app/test.json")
+        fetch("./tests-data/test.json")
         .then(response => {
             if(!response.ok){
                 const err = new Error("No answers file accessable!")
