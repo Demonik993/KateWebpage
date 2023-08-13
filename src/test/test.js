@@ -187,11 +187,9 @@ function chooseTest(userData) {
     const military = document.querySelector('#military');
     const medical = document.querySelector('#medical');
     const other = document.querySelector('#other');
-
-    bussiness.onclick = () => {
-        const testName = bussiness.firstChild.textContent
-        console.log(testName)
-        fetch("./tests-data/test.json")
+    //to fetch data and send it to next function
+    function fetchTest (testName) {
+        fetch("https://sweet-kleicha-edf916.netlify.app/test.json") //change the end of url to name of test
         .then(response => {
             if(!response.ok){
                 const err = new Error("No answers file accessable!")
@@ -202,49 +200,20 @@ function chooseTest(userData) {
         //send it to next function 
         .then(json => loadtest(userData, testName,json))
     };
-    military.onclick = () => {
-        const testName = bussiness.firstChild.textContent
-        console.log(testName)
-        fetch("https://sweet-kleicha-edf916.netlify.app/test.json")
-        .then(response => {
-            if(!response.ok){
-                const err = new Error("No answers file accessable!")
-                err.status = 404;
-                return err;
-            } else {return response.json();}
-        })
-        //send it to next function 
-        .then(json => loadtest(userData, testName,json))
-    };
-    medical.onclick = () => {
-        const testName = bussiness.firstChild.textContent
-        console.log(testName)
-        fetch("https://sweet-kleicha-edf916.netlify.app/test.json")
-        .then(response => {
-            if(!response.ok){
-                const err = new Error("No answers file accessable!")
-                err.status = 404;
-                return err;
-            } else {return response.json();}
-        })
-        //send it to next function 
-        .then(json => loadtest(userData, testName,json))
-    };
-    other.onclick = () => {
-        const testName = bussiness.firstChild.textContent
-        console.log(testName)
-        fetch("https://sweet-kleicha-edf916.netlify.app/test.json")
-        .then(response => {
-            if(!response.ok){
-                const err = new Error("No answers file accessable!")
-                err.status = 404;
-                return err;
-            } else {return response.json();}
-        })
-        //send it to next function 
-        .then(json => loadtest(userData, testName,json))
-    };
-}
+    // to choose node
+    let typesOfTest = document.querySelectorAll('.test-type');
+    typesOfTest.forEach(branch => {branch.addEventListener('click', (e)=>{
+        const testName = e.target.firstChild.textContent;
+        fetchTest(testName);
+    })});
+    typesOfTest.forEach(branch => {
+        branch.addEventListener('keypress', (e)=>{
+            if(e.keyCode === 13){
+                e.preventDefault();
+                const testName = e.target.firstChild.textContent;
+                fetchTest(testName);}
+    })});
+};
 
 studentData.onsubmit = async (e) => {
     e.preventDefault();
