@@ -3,16 +3,6 @@ const title = document.querySelector('h1');
 const div = document.querySelector('div');
 let userData = new FormData (studentData);
 //const answers = require("../dataFiles/test-answer.json")
-const test = [
-    ['Question1','How to say...?','answer 1', 'answer 2', 'answer 3', "answer 4"],
-    ['Question2','How to say...?','answer 1', 'answer 2', 'answer 3', "answer 4"],
-    ['Question3','How to say...?','answer 1', 'answer 2', 'answer 3', "answer 4"],
-    ['Question4','How to say...?','answer 1', 'answer 2', 'answer 3', "answer 4"],
-    ['Question5','How to say...?','answer 1', 'answer 2', 'answer 3', "answer 4"],
-    ['Question6','How to say...?','answer 1', 'answer 2', 'answer 3', "answer 4"]
-];
-
-
 
 // check answer save and send it as an email.
 function checkanswers(userData, resFormData, answers){
@@ -101,7 +91,7 @@ function checkanswers(userData, resFormData, answers){
     closingButton.textContent = "I've got it. Close the test";
     closingButton.onclick = ()=>{ window.close()};
     div.appendChild(closingButton);
-}
+};
 
 function loadtest (userData) {
       //welcome user
@@ -180,6 +170,25 @@ function loadtest (userData) {
             //send it to next function 
             .then(json => checkanswers(userData, testResults,json))    
     }
+};
+// function to choose type of test
+function chooseTest(userData) {
+    //clear div
+    title.textContent = 'Which branch are you interested?'
+    div.innerHTML = '';
+    div.className = 'test-types';
+    div.innerHTML = `<div id ='bussiness' class='test-type'><p>BUSSINESS TEST</p></div>
+    <div id ='military' class='test-type'><p>MILITARY TEST</p></div>
+    <div id ='medical' class='test-type'><p>MEDICAL TEST</p></div>
+    <div id ='other' class='test-type'><p>OTHER TEST</p></div>`;
+    const bussiness = document.querySelector('bussiness');
+    const military = document.querySelector('military');
+    const medical = document.querySelector('medical');
+    const other = document.querySelector('other');
+    
+
+    
+
 }
 
 studentData.onsubmit = async (e) => {
@@ -193,5 +202,6 @@ studentData.onsubmit = async (e) => {
     userData.surname = surname;
     userData.age = age;
     userData.email = email;
-    loadtest(userData)
+    chooseTest(userData)
+   //move it to next function loadtest(userData)
 };

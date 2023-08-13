@@ -20,6 +20,7 @@ body{
         padding: 1em 2em 1em 2em;
         width: fit-content;
         min-width: 30%;
+        border-radius: 10px;
     }
     form p {
         display: flex;
@@ -32,6 +33,9 @@ body{
     #test p {
         display: flex;
         justify-content: flex-start;
+    }
+    .test-types {
+        display: grid;
     }
     
 }
