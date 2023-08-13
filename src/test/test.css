@@ -12,6 +12,7 @@ body{
         color: rgba(0, 0, 0, 0.785);
         text-transform: uppercase;
         text-align: center;
+        letter-spacing: 0.3em;
     }
     form {
         display: block;
@@ -37,7 +38,54 @@ body{
     .test-types {
         display: grid;
     }
-    
+    .test-types{
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        align-content: space-evenly;
+    }
+    .test-type {
+        height: 250px;
+        width: 300px;
+        display: flex;
+        align-items: end;
+    }
+    .test-type:hover{
+        box-shadow: 10px 5px 5px rgb(45, 45, 45);
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    .test-type p{
+        background-color: rgba(207, 214, 213, 0.8);
+        letter-spacing: 0.4em;
+        font-size: 1.2em;
+        position: relative;
+        bottom: 5px;
+        height: fit-content;
+        width: inherit;
+        text-align: center;
+    }
+    #bussiness{
+        background-image: url("../images/teamwork-3213924_640.jpg");
+        background-repeat: no-repeat;
+        background-size: auto 300px;
+    }
+    #military{
+        background-image: url("../images/police-1282330_640.jpg");
+        background-repeat: no-repeat;
+        background-size: auto 300px;
+    }
+    #medical {
+        background-image: url("../images/surgery-1807541_640.jpg");
+        background-repeat: no-repeat;
+        background-size: auto 300px;
+    }
+    #other{
+        background-image: url("../images/paint-2985569_640.jpg");
+        background-repeat: no-repeat;
+        background-size: auto 300px;
+    }
+
 }
 @media (max-width: 599px) {
     body div{

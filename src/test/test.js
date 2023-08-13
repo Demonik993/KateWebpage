@@ -93,7 +93,7 @@ function checkanswers(userData, resFormData, answers){
     div.appendChild(closingButton);
 };
 
-function loadtest (userData) {
+function loadtest (userData,testName,questions) {
       //welcome user
     title.textContent = `Hi, ${userData.name}`;
     //clear page
@@ -103,6 +103,8 @@ function loadtest (userData) {
     const form = document.createElement("form");
     form.id = "test";
     div.appendChild(form);
+// !!! TO CHANGE LOADED QUESTIONS AND ADD TEST NAME !!!!
+// ...
     test.forEach(question=>{
         const questions = document.createElement("fieldset");
         const legend = document.createElement("legend");
@@ -177,18 +179,71 @@ function chooseTest(userData) {
     title.textContent = 'Which branch are you interested?'
     div.innerHTML = '';
     div.className = 'test-types';
-    div.innerHTML = `<div id ='bussiness' class='test-type'><p>BUSSINESS TEST</p></div>
-    <div id ='military' class='test-type'><p>MILITARY TEST</p></div>
-    <div id ='medical' class='test-type'><p>MEDICAL TEST</p></div>
-    <div id ='other' class='test-type'><p>OTHER TEST</p></div>`;
-    const bussiness = document.querySelector('bussiness');
-    const military = document.querySelector('military');
-    const medical = document.querySelector('medical');
-    const other = document.querySelector('other');
-    
+    div.innerHTML = `<div tabindex="0" id ='bussiness' class='test-type' ><p>BUSSINESS TEST</p></div>
+    <div tabindex="0" id ='military' class='test-type'><p>MILITARY TEST</p></div>
+    <div tabindex="0" id ='medical' class='test-type'><p>MEDICAL TEST</p></div>
+    <div tabindex="0" id ='other' class='test-type'><p>OTHER TEST</p></div>`;
+    const bussiness = document.querySelector('#bussiness');
+    const military = document.querySelector('#military');
+    const medical = document.querySelector('#medical');
+    const other = document.querySelector('#other');
 
-    
-
+    bussiness.onclick = () => {
+        const testName = bussiness.firstChild.textContent
+        console.log(testName)
+        fetch("https://sweet-kleicha-edf916.netlify.app/test.json")
+        .then(response => {
+            if(!response.ok){
+                const err = new Error("No answers file accessable!")
+                err.status = 404;
+                return err;
+            } else {return response.json();}
+        })
+        //send it to next function 
+        .then(json => loadtest(userData, testName,json))
+    };
+    military.onclick = () => {
+        const testName = bussiness.firstChild.textContent
+        console.log(testName)
+        fetch("https://sweet-kleicha-edf916.netlify.app/test.json")
+        .then(response => {
+            if(!response.ok){
+                const err = new Error("No answers file accessable!")
+                err.status = 404;
+                return err;
+            } else {return response.json();}
+        })
+        //send it to next function 
+        .then(json => loadtest(userData, testName,json))
+    };
+    medical.onclick = () => {
+        const testName = bussiness.firstChild.textContent
+        console.log(testName)
+        fetch("https://sweet-kleicha-edf916.netlify.app/test.json")
+        .then(response => {
+            if(!response.ok){
+                const err = new Error("No answers file accessable!")
+                err.status = 404;
+                return err;
+            } else {return response.json();}
+        })
+        //send it to next function 
+        .then(json => loadtest(userData, testName,json))
+    };
+    other.onclick = () => {
+        const testName = bussiness.firstChild.textContent
+        console.log(testName)
+        fetch("https://sweet-kleicha-edf916.netlify.app/test.json")
+        .then(response => {
+            if(!response.ok){
+                const err = new Error("No answers file accessable!")
+                err.status = 404;
+                return err;
+            } else {return response.json();}
+        })
+        //send it to next function 
+        .then(json => loadtest(userData, testName,json))
+    };
 }
 
 studentData.onsubmit = async (e) => {
