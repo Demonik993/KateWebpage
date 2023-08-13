@@ -66,22 +66,22 @@ body{
         text-align: center;
     }
     #bussiness{
-        background-image: url("../images/teamwork-3213924_640.jpg");
+        background-image: url("./images/teamwork-3213924_640.jpg");
         background-repeat: no-repeat;
         background-size: auto 300px;
     }
     #military{
-        background-image: url("../images/police-1282330_640.jpg");
+        background-image: url("./images/police-1282330_640.jpg");
         background-repeat: no-repeat;
         background-size: auto 300px;
     }
     #medical {
-        background-image: url("../images/surgery-1807541_640.jpg");
+        background-image: url("./images/surgery-1807541_640.jpg");
         background-repeat: no-repeat;
         background-size: auto 300px;
     }
     #other{
-        background-image: url("../images/paint-2985569_640.jpg");
+        background-image: url("./images/paint-2985569_640.jpg");
         background-repeat: no-repeat;
         background-size: auto 300px;
     }
