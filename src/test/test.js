@@ -5,8 +5,8 @@ let userData = new FormData (studentData);
 //const answers = require("../dataFiles/test-answer.json")
 
 // check answer save and send it as an email.
-function checkanswers(userData, resFormData, answers){
-
+function checkanswers(userData, resFormData, answers, testName){
+    console.log(answers);
     const answersToSend = [];
     let result = 0;
     // new Object with answers
@@ -19,18 +19,17 @@ function checkanswers(userData, resFormData, answers){
     paraRes.textContent = 'Below you can find your results:';
     div.style.display = "block";
     div.appendChild(paraRes)
-    test.forEach(val=> {
+    for (let val of Object.entries(answers)){
         const article = document.createElement('article');
         article.id = val[0];
         div.appendChild(article);
         const head = document.createElement('h3');
         head.textContent = `${val[0]}: ${val[1]}`;
         article.appendChild(head);
-    })
+    };
 
     // compare all data
-    
-    for(let cordata of Object.entries(correctAnswers)){
+    for(let cordata of Object.entries(answers)){
         for(let data of Object.entries(resFormData)){
             if(data[0]===cordata[0]){
               if(data[1] === cordata[1]){
@@ -53,6 +52,7 @@ function checkanswers(userData, resFormData, answers){
                 para.textContent = "Unfortunatly, you are wrong!";
                 para.className = "wrongAnswer";
                 wrongAnswer.textContent = `Your answer: ${data[1]}`;
+                correctAnswer.textContent = `Correct answer: ${cordata[1]}`
                 document.getElementById(`${elId}`).appendChild(para);
                 document.getElementById(`${elId}`).appendChild(wrongAnswer);
                 document.getElementById(`${elId}`).appendChild(correctAnswer);
@@ -62,7 +62,7 @@ function checkanswers(userData, resFormData, answers){
     };
     // And add some summary for user 
     const sumarry = document.createElement('h2');
-    const sum = Math.round((result/test.length)*100)/100;
+    const sum = Math.round((result/Object.keys(answers).length)*100)/100;
     if(sum===1){sumarry.textContent = `Awesome, you passed this test perfectly!`}
     if(sum>0.9){sumarry.textContent = `Wow, you made ${result} (${sum*100}%) correct answers!`}
     if(sum>0.7){sumarry.textContent = `Good job, you made ${result} (${sum*100}%) correct answers!`}
@@ -76,6 +76,7 @@ function checkanswers(userData, resFormData, answers){
     let userResults = {...userData};
     userResults.answers = answersToSend;
     userResults.summary =  `${userData.name} gave ${result} correct answers and it gives ${sum*100}%`;
+    userResults.testName = testName;
     console.log(userResults);
 
     // sending e-mail
@@ -95,32 +96,31 @@ function checkanswers(userData, resFormData, answers){
 
 function loadtest (userData,testName,questions) {
       //welcome user
-    title.textContent = `Hi, ${userData.name}`;
+    title.textContent = `Hi, ${userData.name}, you are doing ${testName}`;
     //clear page
-   
     div.innerHTML = '';
     //create form with questions
     const form = document.createElement("form");
     form.id = "test";
     div.appendChild(form);
 // !!! TO CHANGE LOADED QUESTIONS AND ADD TEST NAME !!!!
-// ...
-    test.forEach(question=>{
-        const questions = document.createElement("fieldset");
+    for(let question of Object.entries(questions)){
+        const questionField = document.createElement("fieldset");
         const legend = document.createElement("legend");
-        questions.id = question[0].toLowerCase();
+        questionField.id = question[0].toLowerCase();
         legend.textContent = question[0];
-        form.appendChild(questions)
+        questionField.appendChild(legend);
+        form.appendChild(questionField)
         //adding questions
         const askQuestion = document.createElement("h3");
-        askQuestion.textContent = question[1];
-        questions.appendChild(askQuestion)
+        askQuestion.textContent = question[1][0];
+        questionField.appendChild(askQuestion)
         //adding answers
-        for(i=2;i<question.length;i++){
+        for(i=1;i<question[1].length;i++){
             let para = document.createElement('p');
             let label = document.createElement('label')
             label.setAttribute("for", question[0]+i);
-            label.textContent = question[i];
+            label.textContent = question[1][i];
             let radio = document.createElement("input");
             radio.setAttribute('required', 'true');
             radio.setAttribute('type', 'radio');
@@ -128,11 +128,9 @@ function loadtest (userData,testName,questions) {
             radio.name = question[0]
             para.appendChild(radio);         
             para.appendChild(label);
-            questions.appendChild(para);
-        } 
-        questions.appendChild(legend)
-        //form.appendChild(questions)       
-    })
+            questionField.appendChild(para);
+        };    
+    }
     //add submit button with function
     const buttonPara = document.createElement('p')
     const sendTest = document.createElement('button');
@@ -140,10 +138,8 @@ function loadtest (userData,testName,questions) {
     sendTest.textContent = 'I have done it!'
     buttonPara.appendChild(sendTest)
     form.appendChild(buttonPara);
-
     form.onsubmit = async (e) =>{
         e.preventDefault();
-
         const formId = document.querySelector('#test')
         const testResults = new FormData(formId);
         e.preventDefault();
@@ -170,7 +166,7 @@ function loadtest (userData,testName,questions) {
                 } else {return response.json();}
             })
             //send it to next function 
-            .then(json => checkanswers(userData, testResults,json))    
+            .then(json => checkanswers(userData, testResults,json, testName))    
     }
 };
 // function to choose type of test
