@@ -2,7 +2,6 @@
 body {
     display:grid;
     overflow-x: hidden;
-    width: 100%;
     font-family: 'Anton', sans-serif;
     font-family: 'Bacasime Antique', serif;
     font-family: 'Open Sans', sans-serif;
@@ -11,26 +10,18 @@ body {
 }
 header {
     display: flex;
-    float: left;
-    flex-wrap: wrap;
-    width: 100%;
+    flex-direction: row-reverse;
     height: fit-content;
     padding-left: 10px;
     padding-right: 20px;
     justify-content: space-between;
     background-color: rgb(109, 90, 84);
-    align-content: flex-start;
-}
-#headerText {
-    width: fit-content;
-    padding-left: 10px;
-    padding-right: 20px;
 }
 #logo {
-    position: relative;
-    top: 0px;
-    left: -10px;
-    z-index: 1;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 3;
     width: fit-content;
 }
 div h1{
@@ -46,10 +37,10 @@ div h1{
     position: sticky;
     top: 0px;
     background-color: rgb(109, 90, 84);
-    width: 100%;
     height: min-content;
     z-index: 2;
 }
+
 #nav-pan ul {
     display: flex;
     float: right;
@@ -79,7 +70,6 @@ div h1{
 .search {
     display: flex;
     height: 250px;
-    width: 100%;
     background-color: rgba(0,0,0,0.7);
     color: whitesmoke;
     padding-left: 10px;
@@ -93,7 +83,7 @@ div h1{
     width: 100%;
 
 }
-input {
+#search {
     background-image: url(search.png);
     background-size: contain;
     background-repeat: no-repeat;
@@ -170,8 +160,9 @@ h2 {
 }
 #panels, #course-panels {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
+    justify-items: center;
     grid-auto-rows: minmax(100px, auto);
 }
 #main-panel, #course-panel {
@@ -185,7 +176,8 @@ h2 {
 }
 #panels div, #course-panels div{
     display: flex;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     background-color: rgba(0,0,0,0.3);
     position: relative;
     align-items: flex-end;
@@ -220,5 +212,58 @@ h2 {
 #course-panel #course-panels div p{
     background-color: rgb(15, 151, 102);
     color: black;
+}
+.newsletter{
+    display: grid;
+    grid-template-rows: 1fr 1fr 2fr;
+    justify-content: start;
+    margin-top: 10px;
+    background-color: aquamarine;
+    height: 200px;
+    padding-left: 30px;
+}
+.newsletter form {
+    gap: 10px;
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+}
+.newsletter h2 {
+    padding-left: 100px;
+}
+.newsletter form input, select{
+    padding: 10px 5px;
+    border-radius: 10px;
+}
+.newsletter form button{
+    color: white;
+    text-decoration: double;
+    background-color:#009999;
+    border: none;
+    border-radius: 10px;
+}
+.newsletter form button:hover {
+    cursor: pointer;
+}
+footer {
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    color: white;
+    margin-top: 10px;
+    background-color: black;
+    justify-content: center;
+    padding-top: 50px;
+    justify-items: center;
+}
+footer ul {
+    display: flex;
+    list-style: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: space-between;
+}
+footer ul li a{
+    text-decoration: none;
+    color: inherit ;
 }
 }

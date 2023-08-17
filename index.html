@@ -17,7 +17,7 @@
 <body>
 	<header>
 		<div id="logo" type="header">
-			<img src="src/logo.png" alt="go anglo logo" height="62px">
+			<img src="src/logo.png" alt="go anglo logo" height="80px">
 		</div>
 		<div id="headerText" type="headerText">
 			<h1 id="name">KATARZYNA SIELICKA-KIBÆK</h1>
@@ -74,13 +74,33 @@
 				<div tabindex="0"><p><a>etc</a></p></div>
 			</div>
 		</article>
+		<article class="newsletter">
+			<h2>Get free lessons by email</h2>
+			<form id="newsletter"action="post">
+				<input type="email" placeholder="Email Adress">
+				<select name="english-level" id="english-level">
+					<option value="basic">Begginer &lbrke;A1&rbrke;</option>
+					<option value="basic">Elementary &lbrke;A2&rbrke;</option>
+					<option value="basic">Intermediate &lbrke;B1&rbrke;</option>
+					<option value="basic">Upper Intermediate &lbrke;B2&rbrke;</option>
+					<option value="basic">Advanced &lbrke;C1/C2&rbrke;</option>
+					<option value="basic">I don't know my level</option>
+				</select>
+				<button type="submit">Subscribe</button>
+			</form>
+		</article>
 	</main>
-	<section id="form">
+	<footer>
+		<img src="src/logo.svg" alt="logo go anglo" srcset="">
+		<ul>
+			<li><a href="#">NEWSLETTER</a></li>
+			<li><a href="#">CONTACT</a></li>
+			<li><a href="#">ABOUT</a></li>
+			<li><a href="#">MEMBERSHIP</a></li>
+			<li><a href="#">PRIVACY</a></li>
+		</ul>
 
-	</section>
-	<aside>
-		<div></div>
-	</aside>
+	</footer>
 	<script src="app.js">
 	</script>
 </body>

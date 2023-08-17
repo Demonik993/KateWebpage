@@ -6,5 +6,6 @@ search.onsubmit = async (e) => {
     console.log("HELLO WORLD")
 
     const input = document.querySelector("#search").value;
-    console.log(input)
+    
+        
 }
