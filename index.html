@@ -12,7 +12,13 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bacasime+Antique&family=Open+Sans:ital,wght@1,500&family=Playfair+Display&display=swap" rel="stylesheet">
 	<link href="style.css" rel="stylesheet">
-	<title>Document</title>
+	<title>GoAnglo</title>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+     (function(){
+       emailjs.init("AlZ-cnJ4XRG4j--Tv");
+        })();
+    </script>
 </head>
 <body>
 	<header>
@@ -76,15 +82,16 @@
 		</article>
 		<article class="newsletter">
 			<h2>Get free lessons by email</h2>
-			<form id="newsletter"action="post">
-				<input type="email" placeholder="Email Adress">
+			<form id="newsletter" action="get">
+				<input id="newsEmail" type="email" placeholder="Email Adress" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required>
 				<select name="english-level" id="english-level">
-					<option value="basic">Begginer &lbrke;A1&rbrke;</option>
-					<option value="basic">Elementary &lbrke;A2&rbrke;</option>
-					<option value="basic">Intermediate &lbrke;B1&rbrke;</option>
-					<option value="basic">Upper Intermediate &lbrke;B2&rbrke;</option>
-					<option value="basic">Advanced &lbrke;C1/C2&rbrke;</option>
-					<option value="basic">I don't know my level</option>
+					<option value>Choose your level</option>
+					<option value="A1">Begginer &lbrke;A1&rbrke;</option>
+					<option value="A2">Elementary &lbrke;A2&rbrke;</option>
+					<option value="B1">Intermediate &lbrke;B1&rbrke;</option>
+					<option value="B2">Upper Intermediate &lbrke;B2&rbrke;</option>
+					<option value="C1/C2">Advanced &lbrke;C1/C2&rbrke;</option>
+					<option value="not-known">I don't know my level</option>
 				</select>
 				<button type="submit">Subscribe</button>
 			</form>

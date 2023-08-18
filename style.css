@@ -160,15 +160,19 @@ h2 {
     position: absolute;   
 }
 #panels, #course-panels {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 10px;
+    display: flex;
+    gap: 20px;
     justify-items: center;
     grid-auto-rows: minmax(100px, auto);
+    flex-wrap: wrap;
+    justify-content: center;
 }
 #main-panel, #course-panel {
     padding-left: 50px;
     padding-right: 50px;
+    display: grid;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 #main-panel h2, #course-panel h2{
     width: 100%;
@@ -203,9 +207,6 @@ h2 {
 #panels div p:hover, #course-panel div p:hover{
     text-decoration: underline;
     cursor: pointer;
-}
-#course-panel {
-    background-color: rgba(61, 61, 61, 0.259);
 }
 #course-panel #course-panels div {
     background-color: rgb(38, 158, 25);

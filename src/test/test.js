@@ -6,11 +6,9 @@ let userData = new FormData (studentData);
 
 // check answer save and send it as an email.
 function checkanswers(questions, userData, resFormData, answers, testName){
-    console.log(answers);
     const answersToSend = [];
     let result = 0;
-    // new Object with answers
-    const correctAnswers = new Object(answers);
+
     // clear all HTML file
     div.innerHTML = ''
     // lets create a page:
@@ -71,13 +69,11 @@ function checkanswers(questions, userData, resFormData, answers, testName){
     
     div.appendChild(sumarry)
  
-    
     //create obj with user answers
     let userResults = {...userData};
     userResults.answers = answersToSend;
     userResults.summary =  `${userData.name} gave ${result} correct answers and it gives ${sum*100}%`;
     userResults.testName = testName;
-    console.log(userResults);
 
     // sending e-mail
     emailjs.send('service_dckp35n', 'template_4ypd9ca', userResults)
