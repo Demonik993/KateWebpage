@@ -1,6 +1,7 @@
 @media screen and (min-width: 300px) {
 body {
     display:grid;
+    margin: 0;
     overflow-x: hidden;
     font-family: 'Anton', sans-serif;
     font-family: 'Bacasime Antique', serif;
@@ -161,7 +162,7 @@ h2 {
 #panels, #course-panels {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    gap: 10px;
     justify-items: center;
     grid-auto-rows: minmax(100px, auto);
 }
@@ -215,7 +216,7 @@ h2 {
 }
 .newsletter{
     display: grid;
-    grid-template-rows: 1fr 1fr 2fr;
+    grid-template-rows: 2fr 1fr 2fr;
     justify-content: start;
     margin-top: 10px;
     background-color: aquamarine;
@@ -229,6 +230,7 @@ h2 {
 }
 .newsletter h2 {
     padding-left: 100px;
+    font-size: larger;
 }
 .newsletter form input, select{
     padding: 10px 5px;
@@ -237,7 +239,7 @@ h2 {
 .newsletter form button{
     color: white;
     text-decoration: double;
-    background-color:#009999;
+    background-color: rgb(109, 90, 84);
     border: none;
     border-radius: 10px;
 }

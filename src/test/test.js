@@ -5,7 +5,7 @@ let userData = new FormData (studentData);
 //const answers = require("../dataFiles/test-answer.json")
 
 // check answer save and send it as an email.
-function checkanswers(userData, resFormData, answers, testName){
+function checkanswers(questions, userData, resFormData, answers, testName){
     console.log(answers);
     const answersToSend = [];
     let result = 0;
@@ -19,12 +19,12 @@ function checkanswers(userData, resFormData, answers, testName){
     paraRes.textContent = 'Below you can find your results:';
     div.style.display = "block";
     div.appendChild(paraRes)
-    for (let val of Object.entries(answers)){
+    for (let val of Object.entries(questions)){
         const article = document.createElement('article');
         article.id = val[0];
         div.appendChild(article);
         const head = document.createElement('h3');
-        head.textContent = `${val[0]}: ${val[1]}`;
+        head.textContent = `${val[0]}: ${val[1][0]}`;
         article.appendChild(head);
     };
 
@@ -90,6 +90,7 @@ function checkanswers(userData, resFormData, answers, testName){
     
     const closingButton = document.createElement('button');
     closingButton.textContent = "I've got it. Close the test";
+    closingButton.className = "closingButton"
     closingButton.onclick = ()=>{ window.close()};
     div.appendChild(closingButton);
 };
@@ -166,7 +167,7 @@ function loadtest (userData,testName,questions) {
                 } else {return response.json();}
             })
             //send it to next function 
-            .then(json => checkanswers(userData, testResults,json, testName))    
+            .then(json => checkanswers(questions, userData, testResults,json, testName))    
     }
 };
 // function to choose type of test

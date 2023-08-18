@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(170, 186, 199);
+    margin:0;
 }
 
 
@@ -7,20 +7,28 @@ body{
     body div{
         display: flex;
         justify-content: center;
+        font-size: 1.2em;
     }
     h1{
         color: rgba(0, 0, 0, 0.785);
         text-transform: uppercase;
         text-align: center;
         letter-spacing: 0.3em;
+        padding: 0 2em;
     }
     form {
+        color: white;
         display: block;
-        background-color: antiquewhite;
+        background-color: rgb(48, 40, 40);
         position: relative;
         padding: 1em 2em 1em 2em;
         width: fit-content;
         min-width: 30%;
+        border-radius: 10px;
+        box-shadow: 5px 5px 10px black;
+    }
+    form input {
+        padding: 5px 10px;
         border-radius: 10px;
     }
     form p {
@@ -29,7 +37,18 @@ body{
         gap: 10px;
     }
     form p button {
+        color: white;
+        text-decoration: double;
+        background-color:rgb(109, 90, 84);
+        border: none;
+        border-radius: 10px;
         margin-right: 1em;
+        padding: 5px 20px;
+        font-size: large;
+        box-shadow: 2px 2px 5px white;
+    }
+    form p button:hover {
+        cursor: pointer;
     }
     #test p {
         display: flex;
@@ -85,7 +104,40 @@ body{
         background-repeat: no-repeat;
         background-size: auto 300px;
     }
-
+    div h2{
+        padding-left: 2em;
+    }
+    div article {
+        border: 1px solid black;
+        margin: 5px 2em;
+        padding-left: 1em;
+        padding-right: 2em;
+        min-width: fit-content;
+    }
+    .wrongAnswer {
+        color: red;
+        text-decoration: underline;
+    }
+    .correctAnswer {
+        color: green;
+        text-decoration: underline;
+    }
+    .closingButton {
+        margin-top: 20px;
+        color: white;
+        text-decoration: double;
+        background-color: rgb(109, 90, 84);
+        border: none;
+        border-radius: 10px;
+        margin-right: 1em;
+        padding: 5px 20px;
+        font-size: large;
+        box-shadow: 2px 2px 5px black;
+        justify-content: space-between;
+        position: relative;
+        bottom: 20px;
+        left: 70%;
+    }
 }
 @media (max-width: 599px) {
     body div{

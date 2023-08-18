@@ -18,10 +18,10 @@
         <form id="student_data">
             <fieldset>
                 <legend> Please enter your data </legend>
-                <p><label for="first-name">What's your name?</label><input id="first-name" type="text" required></p>
-                <p><label for="last-name">What's your surname</label><input id="last-name" type="text" required></p>
-                <p><label for="age">Enter you age</label><input id="age" type="number"></p>
-                <p><label for="email">E-mail is also good</label><input id="email" type="email" ></p>
+                <p><label for="first-name">What's your name?</label><input id="first-name" placeholder="John" type="text" required></p>
+                <p><label for="last-name">What's your surname?</label><input id="last-name" placeholder="Smith" type="text" required></p>
+                <p><label for="age">Enter you age</label><input id="age" placeholder="How old are you?" type="number" min="6"></p>
+                <p><label for="email">E-mail is also good</label><input id="email" type="email" placeholder="john.smith@gmail.com" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" ></p>
             </fieldset>
             <p><button type="submit">Let's start</button></p>
         </form>
