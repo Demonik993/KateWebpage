@@ -100,6 +100,11 @@ function loadtest (userData,testName,questions) {
     const form = document.createElement("form");
     form.id = "test";
     div.appendChild(form);
+    /*
+        TO MAKE ALL QUESTIONS IN SEPARATE WINDOWS
+    const keys = Object.keys(questions);
+    const values = Object.values(questions);
+    */
 // !!! TO CHANGE LOADED QUESTIONS AND ADD TEST NAME !!!!
     for(let question of Object.entries(questions)){
         const questionField = document.createElement("fieldset");
