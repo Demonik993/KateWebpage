@@ -32,13 +32,13 @@
 	<main>
 		<nav id="nav-pan">
 			<ul>
-				<li> <a href="https://katarzynas.netlify.app/" target="_self">HOME</a></li>
-				<li> <a href="#" target="_self">EXERCISE</a></li>
-				<li> <a href="#" target="_self">EXPLANATIONS</a></li>
-				<li> <a href="#" target="_self">SPEAKING</a></li>
-				<li> <a href="#" target="_self">COURSES</a></li>
-				<li> <a href="#" target="_self">CONTACT</a></li>
-				<li> <a href="src/test/test.html" target="_blank">TEST</a></li>
+				<li> <a href="https://katarzynas.netlify.app/" target="_self" title="The main page GoAnglo">HOME</a></li>
+				<li> <a href="#" target="_self" title="Exercises">EXERCISE</a></li>
+				<li> <a href="#" target="_self" title="explanations">EXPLANATIONS</a></li>
+				<li> <a href="#" target="_self" title="Speaking exercises">SPEAKING</a></li>
+				<li> <a href="#" target="_self" title="available courses">COURSES</a></li>
+				<li> <a href="#" target="_self" title="Show me contact">CONTACT</a></li>
+				<li> <a href="src/test/test.html" target="_blank" title="Check you skills">TEST</a></li>
 			</ul>
 		</nav>
 		<article class="search">
@@ -52,6 +52,14 @@
 				</form>
 			</div>
 		</article>
+		<div searching-result-container></div>
+		<template class='search-template' search-template>
+			<div>
+				<h2 tabindex="0" result-title></h2>
+				<p result-description></p>
+				<p><a result-link></a></p>
+			</div>
+		</template>
 		<article id="main-panel">
 			<h2>Start studing with me!</h2>
 			<div id="panels" type="article">
