@@ -16,7 +16,7 @@ header {
     padding-left: 10px;
     padding-right: 20px;
     justify-content: space-between;
-    background-color: rgb(109, 90, 84);
+    background-color: rgb(196, 177, 177);
 }
 #logo {
     z-index: 3;
@@ -34,7 +34,7 @@ div h1{
     justify-content: flex-end;
     position: sticky;
     top: 0px;
-    background-color: rgb(109, 90, 84);
+    background-color: rgb(196, 177, 177);
     height: min-content;
     z-index: 2;
 }
