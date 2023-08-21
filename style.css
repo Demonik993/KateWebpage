@@ -11,7 +11,7 @@ body {
 }
 header {
     display: flex;
-    flex-direction: row-reverse;
+    flex-wrap: wrap;
     height: fit-content;
     padding-left: 10px;
     padding-right: 20px;
@@ -19,9 +19,6 @@ header {
     background-color: rgb(109, 90, 84);
 }
 #logo {
-    position: absolute;
-    top: 10px;
-    left: 10px;
     z-index: 3;
     width: fit-content;
 }
