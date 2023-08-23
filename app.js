@@ -46,6 +46,7 @@ search.onsubmit = async (e) => {
 
 subscirbe.onsubmit = async (e) =>{
     e.preventDefault();
+    const text = document.querySelector('#subsrciptionText');
     const email =  document.querySelector('#newsEmail');
     const level = document.querySelector('#english-level');
     const levelVal = level.value === "" ? "User didn't define level" : level.value;
@@ -58,6 +59,9 @@ subscirbe.onsubmit = async (e) =>{
     }, function(error) {
        console.log('FAILED...', error);
     });
+    subscirbe.innerHTML = '';
+    text.textContent = 'Congratulation you will receive new materials!'
+
 };
 
 // to add new enter and onclick tool for all dives in articles
