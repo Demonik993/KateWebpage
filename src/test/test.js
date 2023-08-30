@@ -6,6 +6,8 @@ let userData = new FormData (studentData);
 
 // check answer save and send it as an email.
 function checkanswers(questions, userData, resFormData, answers, testName){
+    console.log(userData)
+    console.log(resFormData)
     
 
     const answersToSend = [];
@@ -42,31 +44,31 @@ function checkanswers(questions, userData, resFormData, answers, testName){
                         case "C": textAnswer = answer[1][3]; 
                         break;
                         case "D": textAnswer = answer[1][4];
-                        if(data[1] === textAnswer){
-                            let para = document.createElement('p');
-                            let correctAnswer = document.createElement('p');
-                            let elId = data[0];
-                            answersToSend.push(`On question: ${data[0]}, ${userData.name} gave corret answer. ${data[1]}`);
-                            result++;
-                            para.textContent = "Good job you are right!";
-                            para.className = "correctAnswer";
-                            correctAnswer.textContent = `${data[1]}`
-                            document.getElementById(`${elId}`).appendChild(para);
-                            document.getElementById(`${elId}`).appendChild(correctAnswer); 
-                        } else {
-                            let para = document.createElement('p');
-                            let correctAnswer = document.createElement('p');
-                            let wrongAnswer = document.createElement('p');
-                            let elId = data[0];
-                            answersToSend.push(`On question: ${data[0]}, ${userData.name} gave wrong answer: ${data[1]}. Correct answer: ${textAnswer} (${cordata[1][1]})` );
-                            para.textContent = "Unfortunatly, you are wrong!";
-                            para.className = "wrongAnswer";
-                            wrongAnswer.textContent = `Your answer: ${data[1]}`;
-                            correctAnswer.textContent = `Correct answer: ${textAnswer}`
-                            document.getElementById(`${elId}`).appendChild(para);
-                            document.getElementById(`${elId}`).appendChild(wrongAnswer);
-                            document.getElementById(`${elId}`).appendChild(correctAnswer);
-                        }
+                    };
+                    if(data[1] === textAnswer){
+                        let para = document.createElement('p');
+                        let correctAnswer = document.createElement('p');
+                        let elId = data[0];
+                        answersToSend.push(`On question: ${data[0]}, ${userData.name} gave corret answer. ${data[1]}`);
+                        result++;
+                        para.textContent = "Good job you are right!";
+                        para.className = "correctAnswer";
+                        correctAnswer.textContent = `${data[1]}`
+                        document.getElementById(`${elId}`).appendChild(para);
+                        document.getElementById(`${elId}`).appendChild(correctAnswer); 
+                    } else {
+                        let para = document.createElement('p');
+                        let correctAnswer = document.createElement('p');
+                        let wrongAnswer = document.createElement('p');
+                        let elId = data[0];
+                        answersToSend.push(`On question: ${data[0]}, ${userData.name} gave wrong answer: ${data[1]}. Correct answer: ${textAnswer}` );
+                        para.textContent = "Unfortunatly, you are wrong!";
+                        para.className = "wrongAnswer";
+                        wrongAnswer.textContent = `Your answer: ${data[1]}`;
+                        correctAnswer.textContent = `Correct answer: ${textAnswer} (${cordata[1][1]})`
+                        document.getElementById(`${elId}`).appendChild(para);
+                        document.getElementById(`${elId}`).appendChild(wrongAnswer);
+                        document.getElementById(`${elId}`).appendChild(correctAnswer);
                     }
                 }
             }    
