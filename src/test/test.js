@@ -6,6 +6,8 @@ let userData = new FormData (studentData);
 
 // check answer save and send it as an email.
 function checkanswers(questions, userData, resFormData, answers, testName){
+    
+
     const answersToSend = [];
     let result = 0;
 
@@ -27,37 +29,50 @@ function checkanswers(questions, userData, resFormData, answers, testName){
     };
 
     // compare all data
-    for(let cordata of Object.entries(answers)){
-        for(let data of Object.entries(resFormData)){
-            if(data[0]===cordata[0]){
-              if(data[1] === cordata[1]){
-                let para = document.createElement('p');
-                let correctAnswer = document.createElement('p');
-                let elId = data[0];
-                answersToSend.push(`On question: ${data[0]}, ${userData.name} gave corret answer. ${data[1]}`);
-                result++;
-                para.textContent = "Good job you are right!";
-                para.className = "correctAnswer";
-                correctAnswer.textContent = `${data[1]}`
-                document.getElementById(`${elId}`).appendChild(para);
-                document.getElementById(`${elId}`).appendChild(correctAnswer); 
-               } else {
-                let para = document.createElement('p');
-                let correctAnswer = document.createElement('p');
-                let wrongAnswer = document.createElement('p');
-                let elId = data[0];
-                answersToSend.push(`On question: ${data[0]}, ${userData.name} gave wrong answer: ${data[1]}. Correct answer: ${cordata[1]}`);
-                para.textContent = "Unfortunatly, you are wrong!";
-                para.className = "wrongAnswer";
-                wrongAnswer.textContent = `Your answer: ${data[1]}`;
-                correctAnswer.textContent = `Correct answer: ${cordata[1]}`
-                document.getElementById(`${elId}`).appendChild(para);
-                document.getElementById(`${elId}`).appendChild(wrongAnswer);
-                document.getElementById(`${elId}`).appendChild(correctAnswer);
-               }
-            }
-        }    
+    for(let answer of Object.entries(questions)){    
+        for(let cordata of Object.entries(answers)){
+            for(let data of Object.entries(resFormData)){
+                if(data[0]===cordata[0] && data[0]===answer[0]){
+                    let textAnswer;
+                    switch(cordata[1][0]){
+                        case "A": textAnswer = answer[1][1]; 
+                        break;
+                        case "B": textAnswer = answer[1][2]; 
+                        break;
+                        case "C": textAnswer = answer[1][3]; 
+                        break;
+                        case "D": textAnswer = answer[1][4];
+                        if(data[1] === textAnswer){
+                            let para = document.createElement('p');
+                            let correctAnswer = document.createElement('p');
+                            let elId = data[0];
+                            answersToSend.push(`On question: ${data[0]}, ${userData.name} gave corret answer. ${data[1]}`);
+                            result++;
+                            para.textContent = "Good job you are right!";
+                            para.className = "correctAnswer";
+                            correctAnswer.textContent = `${data[1]}`
+                            document.getElementById(`${elId}`).appendChild(para);
+                            document.getElementById(`${elId}`).appendChild(correctAnswer); 
+                        } else {
+                            let para = document.createElement('p');
+                            let correctAnswer = document.createElement('p');
+                            let wrongAnswer = document.createElement('p');
+                            let elId = data[0];
+                            answersToSend.push(`On question: ${data[0]}, ${userData.name} gave wrong answer: ${data[1]}. Correct answer: ${textAnswer} (${cordata[1][1]})` );
+                            para.textContent = "Unfortunatly, you are wrong!";
+                            para.className = "wrongAnswer";
+                            wrongAnswer.textContent = `Your answer: ${data[1]}`;
+                            correctAnswer.textContent = `Correct answer: ${textAnswer}`
+                            document.getElementById(`${elId}`).appendChild(para);
+                            document.getElementById(`${elId}`).appendChild(wrongAnswer);
+                            document.getElementById(`${elId}`).appendChild(correctAnswer);
+                        }
+                    }
+                }
+            }    
+        }
     };
+ 
     // And add some summary for user 
     const sumarry = document.createElement('h2');
     const sum = Math.round((result/Object.keys(answers).length)*100)/100;
@@ -89,6 +104,7 @@ function checkanswers(questions, userData, resFormData, answers, testName){
     closingButton.className = "closingButton"
     closingButton.onclick = ()=>{ window.close()};
     div.appendChild(closingButton);
+     
 };
 
 function loadtest (userData,testName,questions) {
@@ -110,7 +126,7 @@ function loadtest (userData,testName,questions) {
         const questionField = document.createElement("fieldset");
         const legend = document.createElement("legend");
         questionField.id = question[0].toLowerCase();
-        legend.textContent = question[0];
+        legend.textContent = `Question ${question[0]}`;
         questionField.appendChild(legend);
         form.appendChild(questionField)
         //adding questions
@@ -119,7 +135,7 @@ function loadtest (userData,testName,questions) {
         questionField.appendChild(askQuestion)
         //adding answers
         for(i=1;i<question[1].length;i++){
-            let para = document.createElement('p');
+            let para = document.createElement('p'); 
             let label = document.createElement('label')
             label.setAttribute("for", question[0]+i);
             label.textContent = question[1][i];
@@ -159,7 +175,7 @@ function loadtest (userData,testName,questions) {
             }
         });
         // fetch answers from json
-        fetch("https://sweet-kleicha-edf916.netlify.app/test-answer.json")
+        fetch("https://sweet-kleicha-edf916.netlify.app/b1p-diagnostic-test-a-answer.json")
             .then(response => {
                 if(!response.ok){
                     const err = new Error("No answers file accessable!")
@@ -187,7 +203,7 @@ function chooseTest(userData) {
     const other = document.querySelector('#other');
     //to fetch data and send it to next function
     function fetchTest (testName) {
-        fetch("https://sweet-kleicha-edf916.netlify.app/test.json") //change the end of url to name of test
+        fetch("https://sweet-kleicha-edf916.netlify.app/b1p-diagnostic-test-a.json") //change the end of url to name of test
         .then(response => {
             if(!response.ok){
                 const err = new Error("No answers file accessable!")
